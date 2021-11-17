@@ -6,6 +6,12 @@ public class Player : MonoBehaviour
 
     public Rotation Rotation;
 
+    public Interaction Interaction;
+
+    public bool HasPackage;
+
+    public GameManager GameManager;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -18,5 +24,22 @@ public class Player : MonoBehaviour
         this.Movement.Move();
         this.Rotation.RotateCamera();
         this.Movement.Jump();
+    }
+
+    public void Death()
+    {
+        this.SpawnInElevator();
+    }
+
+    private void SpawnInElevator()
+    {
+        this.Movement.CharacterController.enabled = false;
+        this.transform.position = this.GameManager.ElevatorTransform.position;
+        this.Movement.CharacterController.enabled = true;
+    }
+
+    public void NextMission()
+    {
+        this.SpawnInElevator();
     }
 }
