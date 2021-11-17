@@ -41,7 +41,7 @@ public class Movement : MonoBehaviour
     public void Jump()
     {
         // Jump
-        if (Input.GetButtonDown("Jump") /*&& this.isGrounded*/)
+        if (Input.GetButtonDown("Jump") && this.isGrounded)
         {
             if (this.JumpAudioSource.clip != null)
             {
