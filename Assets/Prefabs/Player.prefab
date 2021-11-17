@@ -55,7 +55,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 75
   orthographic: 0
@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 1472385511587933617}
   - component: {fileID: 1472385511587933618}
   - component: {fileID: 1472385511587933621}
+  - component: {fileID: 1427897422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -164,6 +165,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movement: {fileID: 1472385511587933616}
   Rotation: {fileID: 1472385511587933617}
+  Interaction: {fileID: 1427897422}
+  HasPackage: 0
+  GameManager: {fileID: 0}
 --- !u!114 &1472385511587933616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,3 +319,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1427897422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472385511587933619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e980c959f7588c844a278cd9405b5a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 100
+  Interact: {fileID: 0}
