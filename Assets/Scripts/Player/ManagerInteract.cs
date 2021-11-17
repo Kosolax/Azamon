@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ManagerInteract : Interact
@@ -8,9 +6,9 @@ public class ManagerInteract : Interact
 
     public GameObject EyeDoor;
 
-    private bool needToOpen;
+    public bool NeedToOpen;
 
-    private bool needToClose;
+    public bool NeedToClose;
 
     public Transform OpenTransform;
 
@@ -20,17 +18,19 @@ public class ManagerInteract : Interact
     {
         base.MakeAction();
         this.UI.SetActive(true);
-        this.needToOpen = true;
+        this.NeedToOpen = true;
+        this.UIManager.DisplayInteractionText(string.Empty);
+        UIManager.IsMenuOn = true;
     }
 
     private void Update()
     {
-        if (this.needToOpen)
+        if (this.NeedToOpen)
         {
             this.EyeDoor.transform.Translate(this.OpenTransform.transform.position);
         }
 
-        if (this.needToClose)
+        if (this.NeedToClose)
         {
             this.EyeDoor.transform.Translate(this.CloseTransform.transform.position);
         }

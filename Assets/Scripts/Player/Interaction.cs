@@ -4,23 +4,54 @@ public class Interaction : MonoBehaviour
 {
     public float Range;
 
-    public Interact Interact;
+    public ManagerInteract ManagerInteract;
+    public PackageInteract PackageInteract;
 
     private void Update()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, this.Range, 0))
+        if (UIManager.IsMenuOn) return;
+
+        if (ManagerInteract != null)
         {
-            this.Interact = hit.transform.gameObject.GetComponent<Interact>();
-            this.Interact.DisplayText();
+            this.ManagerInteract.DisplayText(false);
+        }
+        if (PackageInteract != null)
+        {
+            this.PackageInteract.DisplayText(false);
+        }
+
+        if (Physics.Raycast(transform.position + transform.forward * 0.6f, transform.TransformDirection(Vector3.forward), out RaycastHit hit, this.Range))
+        {
+            this.ManagerInteract = hit.transform.gameObject.GetComponent<ManagerInteract>();
+
+            if (this.ManagerInteract != null)
+            {
+                this.ManagerInteract.DisplayText(true);
+            }
+            else
+            {
+                this.PackageInteract = hit.transform.gameObject.GetComponent<PackageInteract>();
+
+                if (this.PackageInteract != null)
+                {
+                    this.PackageInteract.DisplayText(true);
+                }
+            }
         }
         else
         {
-            this.Interact = null;
+            this.PackageInteract = null;
+            this.ManagerInteract = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && this.ManagerInteract != null)
         {
-            this.Interact.MakeAction();
+            this.ManagerInteract.MakeAction();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && this.PackageInteract != null)
+        {
+            this.PackageInteract.MakeAction();
         }
     }
 }

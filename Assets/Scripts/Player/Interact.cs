@@ -6,9 +6,28 @@ public class Interact : MonoBehaviour
 
     public string TextToDisplay;
 
-    public void DisplayText()
+    private void Start()
     {
-        this.UIManager.DisplayInteractionText(this.TextToDisplay);
+        if (this.UIManager == null)
+        {
+            GameObject uiManagerGameObject = GameObject.Find("UIManager");
+            if (uiManagerGameObject != null)
+            {
+                this.UIManager = uiManagerGameObject.GetComponent<UIManager>();
+            }
+        }
+    }
+
+    public void DisplayText(bool needText)
+    {
+        if (needText)
+        {
+            this.UIManager.DisplayInteractionText(this.TextToDisplay);
+        }
+        else
+        {
+            this.UIManager.DisplayInteractionText(string.Empty);
+        }
     }
 
     public virtual void MakeAction()

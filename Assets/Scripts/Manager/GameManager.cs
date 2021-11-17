@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public Transform ElevatorTransform;
 
+    public ManagerInteract ManagerInteract;
+
     private void Start()
     {
         this.CurrentMission = 1;
@@ -56,6 +58,9 @@ public class GameManager : MonoBehaviour
 
     public void StartMission()
     {
+        UIManager.IsMenuOn = false;
         this.missions[this.CurrentMission].SpawnPackage();
+        this.ManagerInteract.NeedToClose = true;
+        this.ManagerInteract.NeedToOpen = false;
     }
 }

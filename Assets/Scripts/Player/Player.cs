@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public void Death()
     {
         this.SpawnInElevator();
+        this.HasPackage = false;
     }
 
     private void SpawnInElevator()
@@ -41,5 +42,6 @@ public class Player : MonoBehaviour
     public void NextMission()
     {
         this.SpawnInElevator();
+        this.HasPackage = false;
     }
 }

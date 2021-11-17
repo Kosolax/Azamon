@@ -8,20 +8,32 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI TimerText;
 
-    public TextMeshProUGUI DialogText;
+    public TextMeshProUGUI InteractText;
 
     private void Start()
     {
         IsMenuOn = false;
     }
 
-    public void UpdateTimer(float timer)
+    private void Update()
     {
-        this.TimerText.text = timer.ToString();
+        if (IsMenuOn)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public void UpdateTimer(string timer)
+    {
+        this.TimerText.text = timer;
     }
 
     public void DisplayInteractionText(string text)
     {
-
+        this.InteractText.text = text;
     }
 }
