@@ -10,6 +10,8 @@ public class CrashTest : MonoBehaviour
 
     public BoxCollider TrapCollider;
 
+    public GameManager GameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class CrashTest : MonoBehaviour
         if (other.tag == "Player")
         {
             this.LaunchTrap();
-            other.GetComponent<Player>().Death();
+            this.GameManager.MissionLose(this.GameManager.CurrentMission);
         }
     }
 }
