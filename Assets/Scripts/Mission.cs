@@ -49,12 +49,14 @@ public class Mission : MonoBehaviour
             if (this.Timer <= 0f)
             {
                 this.GameManager.MissionLose(this.MissionNumber);
+                this.UIManager.UpdateTimer(string.Empty);
             }
         }
 
         if (this.IsDone && !this.hasCallSuccess)
         {
             this.hasCallSuccess = true;
+            Debug.Log("hehe");
             this.GameManager.MissionSuccess(this.MissionNumber);
             this.UIManager.UpdateTimer(string.Empty);
         }

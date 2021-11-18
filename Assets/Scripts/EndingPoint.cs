@@ -5,12 +5,17 @@ public class EndingPoint : MonoBehaviour
 {
     public Mission Mission;
 
+    public GameManager GameManager;
+
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null && player.HasPackage)
+        if (this.GameManager.CurrentMission == this.Mission.MissionNumber)
         {
-            this.Mission.IsDone = true;
+            Player player = other.GetComponent<Player>();
+            if (player != null && player.HasPackage)
+            {
+                this.Mission.IsDone = true;
+            }
         }
     }
 }

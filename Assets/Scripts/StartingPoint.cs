@@ -3,14 +3,19 @@
 [RequireComponent(typeof(BoxCollider))]
 public class StartingPoint : MonoBehaviour
 {
+    public GameManager GameManager;
+
     public Mission Mission;
 
     private void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null && player.HasPackage)
+        if (this.GameManager.CurrentMission == this.Mission.MissionNumber)
         {
-            this.Mission.IsStarted = true;
+            Player player = other.GetComponent<Player>();
+            if (player != null && player.HasPackage)
+            {
+                this.Mission.IsStarted = true;
+            }
         }
     }
 }

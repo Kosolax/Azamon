@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     public bool isDead;
 
+    public bool HasDoubleJump;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
 
     private void SpawnInElevator()
     {
-        StartCoroutine(Respawn(RespawnTime));
+
     }
 
     public void NextMission()

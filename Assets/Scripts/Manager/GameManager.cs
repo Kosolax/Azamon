@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void MissionSuccess(int missionNumber)
     {
-        this.CurrentMission = missionNumber++;
+        this.CurrentMission++;
         this.Player.NextMission();
         this.EnableBarrier();
     }
