@@ -60,9 +60,9 @@ public class Player : MonoBehaviour
         this.isDead = true;
         this.Interaction.gameObject.SetActive(false);
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = true;
-        GameObject DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, Quaternion.identity, this.BodyPosition.transform);
-        this.ThirdPersonCameraFreeLook.Follow = DeadBody.transform;
-        this.ThirdPersonCameraFreeLook.LookAt = DeadBody.transform;
+        GameObject DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation, this.BodyPosition.transform);
+        this.ThirdPersonCameraFreeLook.Follow = DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
+        this.ThirdPersonCameraFreeLook.LookAt = DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
 
         yield return new WaitForSeconds(waitTime);
 

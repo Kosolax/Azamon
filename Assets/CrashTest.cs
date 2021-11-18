@@ -35,6 +35,7 @@ public class CrashTest : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            this.LaunchTrap();
             other.GetComponent<Player>().Death();
         }
     }
