@@ -8,6 +8,8 @@ public class CrashTest : MonoBehaviour
 
     public float force;
 
+    public BoxCollider TrapCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +29,13 @@ public class CrashTest : MonoBehaviour
     {
         this.setActive = false;
         this.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward * force);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.GetComponent<Player>().Death();
+        }
     }
 }
