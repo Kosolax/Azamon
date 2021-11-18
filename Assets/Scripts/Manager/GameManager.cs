@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
         this.CurrentMission++;
         this.Player.NextMission();
         this.EnableBarrier();
+        if (this.CurrentMission == 2)
+        {
+            this.Player.Movement.HasDoubleJump = true;
+        }
     }
 
     public void MissionLose(int missionNumber)

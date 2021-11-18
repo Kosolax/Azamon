@@ -28,8 +28,6 @@ public class Player : MonoBehaviour
 
     public bool isDead;
 
-    public bool HasDoubleJump;
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
