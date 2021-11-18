@@ -35,10 +35,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        this.Movement.ApplyGravity();
-        if (UIManager.IsMenuOn) return;
         if (this.isDead == false)
         {
+            this.Movement.ApplyGravity();
+            if (UIManager.IsMenuOn) return;
+
             this.Movement.Move();
             this.Rotation.RotateCamera();
             this.Movement.Jump();
@@ -75,7 +76,7 @@ public class Player : MonoBehaviour
 
     private void SpawnInElevator()
     {
-        
+        StartCoroutine(Respawn(RespawnTime));
     }
 
     public void NextMission()
