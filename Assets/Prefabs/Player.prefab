@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1244958005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244958006}
+  m_Layer: 0
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1244958006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244958005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1472385511587933622}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &811603725533291006
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +193,7 @@ Transform:
   m_Children:
   - {fileID: 1472385511583491302}
   - {fileID: 5167122402218252051}
+  - {fileID: 1244958006}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -185,6 +216,8 @@ MonoBehaviour:
   GameManager: {fileID: 0}
   RiggedPlayerPrefab: {fileID: 4214788028947807639, guid: 5218ab2294c6e50498a6fe3bfbf36ee0, type: 3}
   ThirdPersonCamera: {fileID: 0}
+  BodyPosition: {fileID: 1244958005}
+  ThirdPersonCameraFreeLook: {fileID: 0}
   RespawnTime: 60
   isDead: 0
 --- !u!114 &1472385511587933616

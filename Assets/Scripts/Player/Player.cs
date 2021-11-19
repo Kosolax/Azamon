@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     private void SpawnInElevator()
     {
-        StartCoroutine(Respawn(RespawnTime));
+
     }
 
     public void NextMission()

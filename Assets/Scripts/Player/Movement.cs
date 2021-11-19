@@ -22,9 +22,18 @@ public class Movement : MonoBehaviour
 
     private bool isGrounded;
 
+    public bool HasDoubleJump;
+
+    private bool hasDoneDoubleJumpAlready;
+
     public void ApplyGravity()
     {
         this.isGrounded = Physics.CheckSphere(this.GroundCheck.position, this.groundDistance, this.GroundMask);
+
+        if (this.isGrounded)
+        {
+            this.hasDoneDoubleJumpAlready = false;
+        }
 
         // When we touch the ground we make sure to reset velocity for the next jump
         // Since we can detect to have touch the ground before we really touched the ground we still let a little velocity to keep going down
@@ -38,17 +47,27 @@ public class Movement : MonoBehaviour
         this.CharacterController.Move(this.Velocity * Time.deltaTime);
     }
 
+    private void LocalJump()
+    {
+        if (this.JumpAudioSource.clip != null)
+        {
+            this.JumpAudioSource.Play();
+        }
+
+        this.Velocity.y = Mathf.Sqrt(this.JumpHeight * -2f * this.Gravity);
+    }
+
     public void Jump()
     {
         // Jump
-        if (Input.GetButtonDown("Jump") && this.isGrounded)
+        if ((Input.GetButtonDown("Jump") && this.isGrounded))
         {
-            if (this.JumpAudioSource.clip != null)
-            {
-                this.JumpAudioSource.Play();
-            }
-
-            this.Velocity.y = Mathf.Sqrt(this.JumpHeight * -2f * this.Gravity);
+            this.LocalJump();
+        }
+        else if (Input.GetButtonDown("Jump") && !this.isGrounded && this.HasDoubleJump && !hasDoneDoubleJumpAlready)
+        {
+            this.hasDoneDoubleJumpAlready = true;
+            this.LocalJump();
         }
     }
 
