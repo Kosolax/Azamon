@@ -18,6 +18,8 @@ public class Movement : MonoBehaviour
 
     public Vector3 Velocity;
 
+    public Vector3 realVelocity;
+
     private float groundDistance = 0.4f;
 
     private bool isGrounded;
@@ -60,7 +62,7 @@ public class Movement : MonoBehaviour
     public void Jump()
     {
         // Jump
-        if ((Input.GetButtonDown("Jump") && this.isGrounded))
+        if (Input.GetButtonDown("Jump") && this.isGrounded)
         {
             this.LocalJump();
         }
@@ -79,5 +81,10 @@ public class Movement : MonoBehaviour
 
         Vector3 move = this.transform.right * x + this.transform.forward * z;
         this.CharacterController.Move(move * this.Speed * Time.deltaTime);
+    }
+
+    private void FixedUpdate()
+    {
+        this.realVelocity = this.CharacterController.velocity;
     }
 }

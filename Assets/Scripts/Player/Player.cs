@@ -54,11 +54,22 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawn(float waitTime)
     {
+        Vector3 startVelocity = new Vector3(this.Movement.CharacterController.velocity.x, this.Movement.Velocity.y, this.Movement.CharacterController.velocity.z);
         this.Movement.CharacterController.enabled = false;
         this.isDead = true;
         this.Interaction.gameObject.SetActive(false);
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = true;
         GameObject DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation, this.BodyPosition.transform);
+
+        Rigidbody[] rigidbodies;
+        rigidbodies = DeadBody.GetComponentsInChildren<Rigidbody>();
+
+        foreach (var child in rigidbodies)
+        {
+            child.velocity = startVelocity;
+        }
+
+        //DeadBody.GetComponent<CameraAnchor>().Anchor.GetComponent<Rigidbody>().velocity = startVelocity * 10;
         this.ThirdPersonCameraFreeLook.Follow = DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
         this.ThirdPersonCameraFreeLook.LookAt = DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
 
