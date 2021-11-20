@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+
+using TMPro;
+
 using UnityEngine;
 
 public class ManagerInteract : Interact
@@ -5,6 +9,7 @@ public class ManagerInteract : Interact
     public GameObject UI1;
     public GameObject UI2;
     public GameObject UI3;
+    public GameObject RandomInteraction;
 
     public GameObject EyeDoor;
 
@@ -21,6 +26,8 @@ public class ManagerInteract : Interact
     public bool HasReadLevel3;
 
     public GameManager GameManager;
+
+    public List<string> RandomManagerInteraction;
 
     public bool ShouldDisplay()
     {
@@ -67,6 +74,15 @@ public class ManagerInteract : Interact
             this.UIManager.DisplayInteractionText(string.Empty);
             UIManager.IsMenuOn = true;
             this.HasReadLevel3 = true;
+        }
+        else
+        {
+            this.RandomInteraction.SetActive(true);
+            this.NeedToOpen = true;
+            this.UIManager.DisplayInteractionText(string.Empty);
+            UIManager.IsMenuOn = true;
+            int index = Random.Range(0, this.RandomManagerInteraction.Count);
+            this.RandomInteraction.GetComponentInChildren<TextMeshProUGUI>().text = this.RandomManagerInteraction[index];
         }
     }
 

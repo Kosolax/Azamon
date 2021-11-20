@@ -12,7 +12,7 @@ public class EndingPoint : MonoBehaviour
         if (this.GameManager.CurrentMission == this.Mission.MissionNumber && this.Mission.IsStarted)
         {
             Player player = other.GetComponent<Player>();
-            if (player != null && player.HasPackage)
+            if (player != null && player.Inventory.HasPackage)
             {
                 this.Mission.IsDone = true;
             }

@@ -24,9 +24,9 @@ public class Movement : MonoBehaviour
 
     private bool isGrounded;
 
-    public bool HasDoubleJump;
+    public Inventory Inventory;
 
-    private bool hasDoneDoubleJumpAlready;
+    public bool hasDoneDoubleJumpAlready { get; set; }
 
     public void ApplyGravity()
     {
@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
 
         if (this.isGrounded)
         {
-            this.hasDoneDoubleJumpAlready = false;
+            this.Inventory.HasUsedDoubleJump = false;
         }
 
         // When we touch the ground we make sure to reset velocity for the next jump
@@ -66,9 +66,9 @@ public class Movement : MonoBehaviour
         {
             this.LocalJump();
         }
-        else if (Input.GetButtonDown("Jump") && !this.isGrounded && this.HasDoubleJump && !hasDoneDoubleJumpAlready)
+        else if (Input.GetButtonDown("Jump") && !this.isGrounded && this.Inventory.HasDoubleJump && !this.Inventory.HasUsedDoubleJump)
         {
-            this.hasDoneDoubleJumpAlready = true;
+            this.Inventory.HasUsedDoubleJump = true;
             this.LocalJump();
         }
     }

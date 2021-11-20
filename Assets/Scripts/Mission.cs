@@ -26,6 +26,7 @@ public class Mission : MonoBehaviour
         this.IsDone = false;
         this.IsStarted = false;
         this.hasCallSuccess = false;
+        this.UIManager.UpdateTimer(string.Empty);
     }
 
     public void SpawnPackage()
@@ -40,7 +41,7 @@ public class Mission : MonoBehaviour
         this.Reset();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (this.IsStarted && !this.IsDone)
         {
@@ -56,7 +57,6 @@ public class Mission : MonoBehaviour
         if (this.IsDone && !this.hasCallSuccess)
         {
             this.hasCallSuccess = true;
-            Debug.Log("hehe");
             this.GameManager.MissionSuccess(this.MissionNumber);
             this.UIManager.UpdateTimer(string.Empty);
         }

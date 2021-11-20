@@ -8,7 +8,7 @@ public class PackageInteract : Interact
     public override void MakeAction()
     {
         base.MakeAction();
-        this.Player.HasPackage = true;
+        this.Player.Inventory.HasPackage = true;
         Destroy(this.gameObject);
         this.Barrier.SetActive(false);
         this.UIManager.DisplayInteractionText(string.Empty);

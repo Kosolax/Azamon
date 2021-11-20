@@ -12,7 +12,7 @@ public class StartingPoint : MonoBehaviour
         if (this.GameManager.CurrentMission == this.Mission.MissionNumber)
         {
             Player player = other.GetComponent<Player>();
-            if (player != null && player.HasPackage)
+            if (player != null && player.Inventory.HasPackage)
             {
                 this.Mission.IsStarted = true;
             }

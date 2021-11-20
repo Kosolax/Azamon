@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
 
     public Interaction Interaction;
 
-    public bool HasPackage;
-
     public GameManager GameManager;
 
     public GameObject RiggedPlayerPrefab;
@@ -27,6 +25,8 @@ public class Player : MonoBehaviour
     public float RespawnTime;
 
     public bool isDead;
+
+    public Inventory Inventory;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     public void Death()
     {
         StartCoroutine(Respawn(RespawnTime));
-        this.HasPackage = false;
+        this.Inventory.HasPackage = false;
     }
 
     private IEnumerator Respawn(float waitTime)
@@ -93,6 +93,6 @@ public class Player : MonoBehaviour
     public void NextMission()
     {
         this.SpawnInElevator();
-        this.HasPackage = false;
+        this.Inventory.HasPackage = false;
     }
 }

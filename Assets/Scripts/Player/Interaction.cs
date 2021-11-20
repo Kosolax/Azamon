@@ -26,7 +26,7 @@ public class Interaction : MonoBehaviour
 
             if (this.ManagerInteract != null)
             {
-                this.ManagerInteract.DisplayText(this.ManagerInteract.ShouldDisplay());
+                this.ManagerInteract.DisplayText(true);
             }
             else
             {

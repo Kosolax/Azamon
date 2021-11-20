@@ -1,8 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using TMPro;
+
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +29,17 @@ public class GameManager : MonoBehaviour
 
     public ManagerInteract ManagerInteract;
 
+    public Action ResetLevel;
+
+    public List<string> DeathManagerReaction;
+
+    public TextMeshProUGUI ReactionText;
+
+    public GameObject ReactionPanel;
+
+    [SerializeField]
+    private float displayTimer;
+
     private void Start()
     {
         this.CurrentMission = 1;
@@ -37,7 +53,7 @@ public class GameManager : MonoBehaviour
         this.EnableBarrier();
         if (this.CurrentMission == 2)
         {
-            this.Player.Movement.HasDoubleJump = true;
+            this.Player.Inventory.HasDoubleJump = true;
         }
     }
 
@@ -48,6 +64,25 @@ public class GameManager : MonoBehaviour
         mission.Reset();
         this.CounterDeath++;
         this.EnableBarrier();
+        this.RestartMission();
+        StartCoroutine(ManagerReaction(this.Player.RespawnTime));
+    }
+
+    public IEnumerator ManagerReaction(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        int index = Random.Range(0, this.DeathManagerReaction.Count);
+        this.ReactionPanel.SetActive(true);
+        this.ReactionText.text = this.DeathManagerReaction[index];
+        this.ReactionText.text = this.ReactionText.text.Replace("{0}", this.GetCounterDeathFormatted(this.CounterDeath.ToString()));
+        yield return new WaitForSeconds(this.displayTimer);
+        this.ReactionPanel.SetActive(false);
+        this.ReactionText.text = string.Empty;
+    }
+
+    private string GetCounterDeathFormatted(string value)
+    {
+        return value.PadLeft(3, '0');
     }
 
     public void DisableBarrier()
@@ -66,5 +101,15 @@ public class GameManager : MonoBehaviour
         this.missions[this.CurrentMission].SpawnPackage();
         this.ManagerInteract.NeedToClose = true;
         this.ManagerInteract.NeedToOpen = false;
+    }
+
+    public void CloseUI()
+    {
+        UIManager.IsMenuOn = false;
+    }
+
+    public void RestartMission()
+    {
+        this.missions[this.CurrentMission].SpawnPackage();
     }
 }
