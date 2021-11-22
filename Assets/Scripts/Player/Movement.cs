@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
 
     private float groundDistance = 0.4f;
 
-    private bool isGrounded;
+    public bool isGrounded;
 
     public Inventory Inventory;
 
