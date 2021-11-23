@@ -20,6 +20,18 @@ public class Movement : MonoBehaviour
 
     public Vector3 realVelocity;
 
+    public float ghostJumpTime;
+
+    private float timer;
+
+    private float timerBis;
+
+    public float InitialJumpTimer;
+
+    private bool canGhostJump;
+
+    private bool isJumping;
+
     private float groundDistance = 0.4f;
 
     public bool isGrounded;
@@ -55,15 +67,18 @@ public class Movement : MonoBehaviour
         {
             this.JumpAudioSource.Play();
         }
-
+        this.isJumping = true;
         this.Velocity.y = Mathf.Sqrt(this.JumpHeight * -2f * this.Gravity);
     }
 
     public void Jump()
     {
         // Jump
-        if (Input.GetButtonDown("Jump") && this.isGrounded)
+        if (Input.GetButtonDown("Jump") && this.isGrounded || Input.GetButtonDown("Jump") && this.canGhostJump == true && this.timer > 0f)
         {
+            this.timerBis = this.InitialJumpTimer;
+            this.canGhostJump = false;
+            this.timer = 0f;
             this.LocalJump();
         }
         else if (Input.GetButtonDown("Jump") && !this.isGrounded && this.Inventory.HasDoubleJump && !this.Inventory.HasUsedDoubleJump)
@@ -83,8 +98,45 @@ public class Movement : MonoBehaviour
         this.CharacterController.Move(move * this.Speed * Time.deltaTime);
     }
 
+    private void Start()
+    {
+        this.canGhostJump = false;
+        this.isJumping = false;
+    }
+
     private void FixedUpdate()
     {
         this.realVelocity = this.CharacterController.velocity;
+        if (!this.isGrounded)
+        {
+            if (this.timer > 0f && this.canGhostJump == true)
+            {
+                this.timer -= Time.deltaTime;
+            }
+            else
+            {
+                this.canGhostJump = false;
+            }
+        }
+        else if (this.isGrounded && this.isJumping)
+        {
+            if (this.timerBis > 0f)
+            {
+                this.timerBis -= Time.deltaTime;
+            }
+            else
+            {
+                this.isJumping = false;
+            }
+        }
+        else if (!this.isGrounded && this.isJumping)
+        {
+            this.canGhostJump = false;
+        }
+        else if (this.isGrounded && !this.isJumping)
+        {
+            this.canGhostJump = true;
+            this.timer = this.ghostJumpTime;
+        }
     }
 }

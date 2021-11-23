@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
 
     public GameManager GameManager;
 
+    public GameObject DeadBodies;
+
     public GameObject RiggedPlayerPrefab;
 
     public GameObject ThirdPersonCamera;
@@ -59,7 +61,8 @@ public class Player : MonoBehaviour
         this.isDead = true;
         this.Interaction.gameObject.SetActive(false);
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = true;
-        GameObject DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation, this.BodyPosition.transform);
+        GameObject DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation);
+        DeadBody.transform.parent = this.DeadBodies.transform;
 
         Rigidbody[] rigidbodies;
         rigidbodies = DeadBody.GetComponentsInChildren<Rigidbody>();
@@ -77,8 +80,9 @@ public class Player : MonoBehaviour
 
         this.ThirdPersonCameraFreeLook.Follow = this.BodyPosition.transform;
         this.ThirdPersonCameraFreeLook.LookAt = this.BodyPosition.transform;
-        Destroy(DeadBody);
+        Destroy(DeadBody.GetComponent<CameraAnchor>());
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = false;
+        DeadBody.layer = LayerMask.NameToLayer("Ground");
         this.Interaction.gameObject.SetActive(true);
         this.transform.position = this.GameManager.ElevatorTransform.position;
         this.Movement.CharacterController.enabled = true;
