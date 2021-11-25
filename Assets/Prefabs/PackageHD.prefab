@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6075339343145467450}
   - component: {fileID: 6075339343145467428}
   - component: {fileID: 6075339343145467429}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PackageHD
   m_TagString: Untagged
   m_Icon: {fileID: 0}

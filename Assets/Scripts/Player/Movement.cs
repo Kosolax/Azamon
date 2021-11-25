@@ -106,9 +106,17 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (this.isGrounded)
+        {
+            this.CharacterController.stepOffset = 0.3f;
+        }
+
         this.realVelocity = this.CharacterController.velocity;
+
         if (!this.isGrounded)
         {
+            //the best i found for not clipping and still not climbing walls like a spider
+            this.CharacterController.stepOffset = 0.002f;
             if (this.timer > 0f && this.canGhostJump == true)
             {
                 this.timer -= Time.deltaTime;
