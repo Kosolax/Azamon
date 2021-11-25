@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8545904619153226037}
   - component: {fileID: 8545904619153226042}
   - component: {fileID: 8545904619153226043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1756,7 +1756,7 @@ GameObject:
   - component: {fileID: 8545904619663146453}
   - component: {fileID: 8545904619663146458}
   - component: {fileID: 8545904619663146459}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3499,7 +3499,7 @@ GameObject:
   - component: {fileID: 8545904619910353801}
   - component: {fileID: 8545904619910353806}
   - component: {fileID: 8545904619910353807}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chimney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4519,7 +4519,7 @@ GameObject:
   - component: {fileID: 8545904620242357402}
   - component: {fileID: 8545904620242357403}
   - component: {fileID: 8545904620242357400}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1336909568104730378}
   - component: {fileID: 1336909568104730379}
   - component: {fileID: 1336909568104730380}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Air vent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
