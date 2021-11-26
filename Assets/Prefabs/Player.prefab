@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &47067758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47067759}
+  m_Layer: 0
+  m_Name: JumpCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &47067759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47067758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1472385511587933622}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &263552954
 GameObject:
   m_ObjectHideFlags: 3
@@ -24,7 +54,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263552954}
-  m_LocalRotation: {x: 0.16119993, y: 0.000000008490676, z: -0.0000000013868334, w: 0.9869218}
+  m_LocalRotation: {x: 0.16119991, y: -0.0000000084906775, z: 0.0000000013868338, w: 0.9869218}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -225,7 +255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641282261}
-  m_LocalRotation: {x: 0.19525884, y: -0.000000018888928, z: 0.0000000037519197, w: 0.98075175}
+  m_LocalRotation: {x: 0.19525884, y: 0.000000018878964, z: -0.0000000037539007, w: 0.98075175}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -856,7 +886,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892625510}
-  m_LocalRotation: {x: 0.19525884, y: -0.000000018867029, z: 0.0000000037562558, w: 0.98075175}
+  m_LocalRotation: {x: 0.19525884, y: 0.000000018867034, z: -0.0000000037562558, w: 0.98075175}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1152,6 +1182,7 @@ Transform:
   - {fileID: 5167122402218252051}
   - {fileID: 1244958006}
   - {fileID: 1792602886}
+  - {fileID: 47067759}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1204,11 +1235,14 @@ MonoBehaviour:
   realVelocity: {x: 0, y: 0, z: 0}
   ghostJumpTime: 0.1
   InitialJumpTimer: 0.2
-  GroundDistance: 0.4
+  GroundDistance: 0.5
+  JumpDistance: 0.3
   isGrounded: 0
+  IsAbleToJump: 0
   Inventory: {fileID: 2459359704345110608}
   FallVelocity: -20
   GameManager: {fileID: 0}
+  JumpCheck: {fileID: 47067759}
 --- !u!114 &1472385511587933617
 MonoBehaviour:
   m_ObjectHideFlags: 0
