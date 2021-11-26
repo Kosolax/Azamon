@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         this.missions = this.Missions.ToDictionary(x => x.MissionNumber, x => x);
     }
 
-    public void MissionSuccess(int missionNumber)
+    public void MissionSuccess()
     {
         this.CurrentMission++;
         this.Player.NextMission();
@@ -57,10 +57,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void MissionLose(int missionNumber)
+    public void MissionLose()
     {
         this.Player.Death();
-        Mission mission = this.missions[missionNumber];
+        Mission mission = this.missions[this.CurrentMission];
         mission.Reset();
         this.CounterDeath++;
         this.EnableBarrier();

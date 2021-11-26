@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
 
     public Sprite EnabledDoubleJumpSprite;
 
-    public bool hasDoubleJump = true;
+    public bool hasDoubleJump;
 
     private bool hasPackage;
 

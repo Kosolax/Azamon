@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
 
+        this.Movement.Velocity.y = 0;
         this.ThirdPersonCameraFreeLook.Follow = this.BodyPosition.transform;
         this.ThirdPersonCameraFreeLook.LookAt = this.BodyPosition.transform;
         Destroy(DeadBody.GetComponent<CameraAnchor>());
@@ -91,7 +92,9 @@ public class Player : MonoBehaviour
 
     private void SpawnInElevator()
     {
-
+        this.Movement.CharacterController.enabled = false;
+        this.transform.position = this.GameManager.ElevatorTransform.position;
+        this.Movement.CharacterController.enabled = true;
     }
 
     public void NextMission()

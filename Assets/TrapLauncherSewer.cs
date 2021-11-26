@@ -17,7 +17,7 @@ public class TrapLauncherSewer : MonoBehaviour
         if (other.tag == "Player")
         {
             this.LaunchTrap();
-            this.GameManager.MissionLose(this.GameManager.CurrentMission);
+            this.GameManager.MissionLose();
             SewerCollider.enabled = false;
             this.Trigger.SetActive(false);
         }

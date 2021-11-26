@@ -10,7 +10,7 @@ public class TrapDeath : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            this.GameManager.MissionLose(this.GameManager.CurrentMission);
+            this.GameManager.MissionLose();
         }
     }
 }

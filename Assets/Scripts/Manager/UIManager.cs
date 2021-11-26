@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public static bool IsMenuOn;
+    public static bool IsMenuOn { get; set; }
 
     public TextMeshProUGUI TimerText;
 
     public TextMeshProUGUI InteractText;
-
-    private void Start()
-    {
-        IsMenuOn = false;
-    }
 
     private void Update()
     {

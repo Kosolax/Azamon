@@ -32,20 +32,35 @@ public class Movement : MonoBehaviour
 
     private bool isJumping;
 
-    private float groundDistance = 0.4f;
+    public float GroundDistance = 0.4f;
+    public float JumpDistance = 0.4f;
 
     public bool isGrounded;
+    public bool IsAbleToJump;
 
     public Inventory Inventory;
+
+    public float FallVelocity;
+
+    public GameManager GameManager;
+
+    public Transform JumpCheck;
 
     public bool hasDoneDoubleJumpAlready { get; set; }
 
     public void ApplyGravity()
     {
-        this.isGrounded = Physics.CheckSphere(this.GroundCheck.position, this.groundDistance, this.GroundMask);
+        this.IsAbleToJump = Physics.CheckSphere(this.JumpCheck.position, this.JumpDistance, this.GroundMask);
+        this.isGrounded = Physics.CheckSphere(this.GroundCheck.position, this.GroundDistance, this.GroundMask);
 
-        if (this.isGrounded)
+        if (this.IsAbleToJump)
         {
+            if (this.Velocity.y <= this.FallVelocity)
+            {
+                this.GameManager.MissionLose();
+                return;
+            }
+
             this.Inventory.HasUsedDoubleJump = false;
         }
 
@@ -74,14 +89,14 @@ public class Movement : MonoBehaviour
     public void Jump()
     {
         // Jump
-        if (Input.GetButtonDown("Jump") && this.isGrounded || Input.GetButtonDown("Jump") && this.canGhostJump == true && this.timer > 0f)
+        if (Input.GetButtonDown("Jump") && this.IsAbleToJump || Input.GetButtonDown("Jump") && this.canGhostJump == true && this.timer > 0f)
         {
             this.timerBis = this.InitialJumpTimer;
             this.canGhostJump = false;
             this.timer = 0f;
             this.LocalJump();
         }
-        else if (Input.GetButtonDown("Jump") && !this.isGrounded && this.Inventory.HasDoubleJump && !this.Inventory.HasUsedDoubleJump)
+        else if (Input.GetButtonDown("Jump") && !this.IsAbleToJump && this.Inventory.HasDoubleJump && !this.Inventory.HasUsedDoubleJump)
         {
             this.Inventory.HasUsedDoubleJump = true;
             this.LocalJump();
@@ -106,14 +121,14 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (this.isGrounded)
+        if (this.IsAbleToJump)
         {
             this.CharacterController.stepOffset = 0.3f;
         }
 
         this.realVelocity = this.CharacterController.velocity;
 
-        if (!this.isGrounded)
+        if (!this.IsAbleToJump)
         {
             //the best i found for not clipping and still not climbing walls like a spider
             this.CharacterController.stepOffset = 0.002f;
@@ -126,7 +141,7 @@ public class Movement : MonoBehaviour
                 this.canGhostJump = false;
             }
         }
-        else if (this.isGrounded && this.isJumping)
+        else if (this.IsAbleToJump && this.isJumping)
         {
             if (this.timerBis > 0f)
             {
@@ -137,11 +152,11 @@ public class Movement : MonoBehaviour
                 this.isJumping = false;
             }
         }
-        else if (!this.isGrounded && this.isJumping)
+        else if (!this.IsAbleToJump && this.isJumping)
         {
             this.canGhostJump = false;
         }
-        else if (this.isGrounded && !this.isJumping)
+        else if (this.IsAbleToJump && !this.isJumping)
         {
             this.canGhostJump = true;
             this.timer = this.ghostJumpTime;
