@@ -110,7 +110,10 @@ public class Movement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = this.transform.right * x + this.transform.forward * z;
-        this.CharacterController.Move(move * this.Speed * Time.deltaTime);
+        if (this.CharacterController.enabled)
+        {
+            this.CharacterController.Move(move * this.Speed * Time.deltaTime);
+        }
     }
 
     private void Start()

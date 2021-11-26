@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject ReactionPanel;
 
+    public GameObject WinPanel;
+
     [SerializeField]
     private float displayTimer;
 
@@ -48,6 +50,12 @@ public class GameManager : MonoBehaviour
 
     public void MissionSuccess()
     {
+        if (this.CurrentMission == this.Missions.Count)
+        {
+            this.WinPanel.SetActive(true);
+            UIManager.IsMenuOn = true;
+        }
+
         this.CurrentMission++;
         this.Player.NextMission();
         this.EnableBarrier();

@@ -13,6 +13,7 @@ public class PackageInteract : Interact
         this.Barrier.SetActive(false);
         this.UIManager.DisplayInteractionText(string.Empty);
     }
+
     private void Start()
     {
         if (this.UIManager == null)
