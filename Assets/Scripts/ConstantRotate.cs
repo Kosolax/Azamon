@@ -9,8 +9,7 @@ public class ConstantRotate : MonoBehaviour
     public int ZSpeed = 0;
     public int GlobalSpeed = 20;
 
-    // Update is called once per frame
-    void Update()
+    private void FixeUpdate()
     {
         transform.Rotate(this.GlobalSpeed * this.XSpeed * Time.deltaTime, this.GlobalSpeed * this.YSpeed * Time.deltaTime, this.GlobalSpeed * this.ZSpeed * Time.deltaTime);
     }

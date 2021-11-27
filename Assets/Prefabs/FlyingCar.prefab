@@ -1064,8 +1064,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b60f3937416b0f47a8f44e086e3d18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transforms: []
-  index: 0
+  Transforms:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  index: 1
   Speed: 10
   ResetTransform: {fileID: 0}
 --- !u!1 &4175771790267272076
@@ -3078,6 +3083,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3996031412917976261, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4375484132370958575, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3259,6 +3268,10 @@ PrefabInstance:
     - target: {fileID: 3892388938550369031, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996031412917976261, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4375484132370958575, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
       propertyPath: m_Mesh
@@ -3442,6 +3455,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3996031412917976261, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4375484132370958575, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3623,6 +3640,10 @@ PrefabInstance:
     - target: {fileID: 3892388938550369031, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996031412917976261, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4375484132370958575, guid: 0a3f0cb0734f5da4db4018d78df96cb4, type: 3}
       propertyPath: m_Mesh
