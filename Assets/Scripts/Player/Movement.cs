@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
         this.IsAbleToJump = Physics.CheckSphere(this.JumpCheck.position, this.JumpDistance, this.GroundMask);
         this.isGrounded = Physics.CheckSphere(this.GroundCheck.position, this.GroundDistance, this.GroundMask);
 
-        if (this.IsAbleToJump)
+        if (this.isGrounded)
         {
             if (this.Velocity.y <= this.FallVelocity)
             {

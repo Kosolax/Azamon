@@ -13,6 +13,6 @@ public class magnitude : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<TextMeshProUGUI>().text = characterController.velocity.magnitude.ToString();
+        this.GetComponent<TextMeshProUGUI>().text = characterController.gameObject.GetComponent<Player>().Movement.Velocity.y.ToString();
     }
 }
