@@ -12,6 +12,12 @@ public class TrapLauncherSewer : MonoBehaviour
 
     public GameObject Trigger;
 
+    public ParticleSystem idleParticleSystem;
+
+    public ParticleSystem launchParticleSystem;
+
+    public AudioSource AudioSource;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -27,6 +33,9 @@ public class TrapLauncherSewer : MonoBehaviour
     {
         if (this.GetComponent<Rigidbody>() != null)
         {
+            this.idleParticleSystem.gameObject.SetActive(false);
+            this.launchParticleSystem.Play();
+            this.AudioSource.Play();
             this.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up * force);
         }
     }
