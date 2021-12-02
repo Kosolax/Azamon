@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
 
     public float InitialJumpTimer;
 
-    private bool canGhostJump;
+    public bool canGhostJump;
 
     private bool isJumping;
 
@@ -60,7 +60,10 @@ public class Movement : MonoBehaviour
                 this.GameManager.MissionLose();
                 return;
             }
+        }
 
+        if (this.IsAbleToJump)
+        {
             this.Inventory.HasUsedDoubleJump = false;
         }
 
@@ -68,7 +71,7 @@ public class Movement : MonoBehaviour
         // Since we can detect to have touch the ground before we really touched the ground we still let a little velocity to keep going down
         if (this.isGrounded && this.Velocity.y < 0)
         {
-            this.Velocity.y = -2f;
+            this.Velocity.y = -5f;
         }
 
         // Gravity
