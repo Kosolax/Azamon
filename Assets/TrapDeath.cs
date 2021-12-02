@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class TrapDeath : MonoBehaviour
 {
-    public GameManager GameManager;
+    private GameManager GameManager;
 
     private void Awake()
     {

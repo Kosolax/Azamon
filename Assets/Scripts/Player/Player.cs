@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public GameObject DeadBodies;
 
+    public GameObject DeadBody;
+
     public GameObject RiggedPlayerPrefab;
 
     public GameObject ThirdPersonCamera;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        this.ThirdPersonCamera.GetComponent<AudioListener>().enabled = false;
     }
 
     private void Update()
@@ -60,12 +63,13 @@ public class Player : MonoBehaviour
         this.Movement.CharacterController.enabled = false;
         this.isDead = true;
         this.Interaction.gameObject.SetActive(false);
+        this.ThirdPersonCamera.GetComponent<AudioListener>().enabled = true;
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = true;
-        GameObject DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation);
-        DeadBody.transform.parent = this.DeadBodies.transform;
+        this.DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation);
+        this.DeadBody.transform.parent = this.DeadBodies.transform;
 
         Rigidbody[] rigidbodies;
-        rigidbodies = DeadBody.GetComponentsInChildren<Rigidbody>();
+        rigidbodies = this.DeadBody.GetComponentsInChildren<Rigidbody>();
 
         foreach (var child in rigidbodies)
         {
@@ -73,21 +77,23 @@ public class Player : MonoBehaviour
         }
 
         //DeadBody.GetComponent<CameraAnchor>().Anchor.GetComponent<Rigidbody>().velocity = startVelocity * 10;
-        this.ThirdPersonCameraFreeLook.Follow = DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
-        this.ThirdPersonCameraFreeLook.LookAt = DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
+        this.ThirdPersonCameraFreeLook.Follow = this.DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
+        this.ThirdPersonCameraFreeLook.LookAt = this.DeadBody.GetComponent<CameraAnchor>().Anchor.transform;
 
         yield return new WaitForSeconds(waitTime);
 
         this.Movement.Velocity.y = 0;
         this.ThirdPersonCameraFreeLook.Follow = this.BodyPosition.transform;
         this.ThirdPersonCameraFreeLook.LookAt = this.BodyPosition.transform;
-        Destroy(DeadBody.GetComponent<CameraAnchor>());
+        Destroy(this.DeadBody.GetComponent<CameraAnchor>());
+        this.ThirdPersonCamera.GetComponent<AudioListener>().enabled = false;
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = false;
-        DeadBody.layer = LayerMask.NameToLayer("Ground");
+        this.DeadBody.layer = LayerMask.NameToLayer("Ground");
         this.Interaction.gameObject.SetActive(true);
         this.transform.position = this.GameManager.ElevatorTransform.position;
         this.Movement.CharacterController.enabled = true;
         this.isDead = false;
+        this.DeadBody = null;
     }
 
     private void SpawnInElevator()
@@ -102,4 +108,23 @@ public class Player : MonoBehaviour
         this.SpawnInElevator();
         this.Inventory.HasPackage = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "platform")
+        {
+            transform.parent = other.transform.parent.transform;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "platform")
+        {
+            transform.parent = null;
+
+        }
+    }
+
 }

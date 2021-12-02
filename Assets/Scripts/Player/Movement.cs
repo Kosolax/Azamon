@@ -112,7 +112,7 @@ public class Movement : MonoBehaviour
         Vector3 move = this.transform.right * x + this.transform.forward * z;
         if (this.CharacterController.enabled)
         {
-            this.CharacterController.Move(move * this.Speed * Time.deltaTime);
+            this.CharacterController.Move(Vector3.ClampMagnitude(move,1f) * this.Speed * Time.deltaTime);
         }
     }
 
