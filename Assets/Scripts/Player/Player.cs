@@ -86,6 +86,10 @@ public class Player : MonoBehaviour
         this.ThirdPersonCameraFreeLook.Follow = this.BodyPosition.transform;
         this.ThirdPersonCameraFreeLook.LookAt = this.BodyPosition.transform;
         Destroy(this.DeadBody.GetComponent<CameraAnchor>());
+        foreach (var child in rigidbodies)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Ground");
+        }
         this.ThirdPersonCamera.GetComponent<AudioListener>().enabled = false;
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = false;
         this.DeadBody.layer = LayerMask.NameToLayer("Ground");

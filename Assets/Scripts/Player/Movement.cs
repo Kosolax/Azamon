@@ -71,7 +71,7 @@ public class Movement : MonoBehaviour
         // Since we can detect to have touch the ground before we really touched the ground we still let a little velocity to keep going down
         if (this.isGrounded && this.Velocity.y < 0)
         {
-            this.Velocity.y = -5f;
+            this.Velocity.y = -3f;
         }
 
         // Gravity

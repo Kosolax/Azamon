@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ExploTrap : MonoBehaviour
 {
     private GameManager GameManager;
@@ -22,6 +23,8 @@ public class ExploTrap : MonoBehaviour
 
     public AudioSource ExplosionSound;
 
+    private GameObject DeadBody;
+
     private void Awake()
     {
         if (this.GameManager == null)
@@ -32,16 +35,28 @@ public class ExploTrap : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.GetComponent<Player>() != null || other.GetComponent<Rigidbody>() != null)
         {
-            this.GameManager.MissionLose();
             this.MeshCollider.enabled = false;
             this.MeshRenderer.enabled = false;
             this.MeshColliderTrigger.enabled = false;
             Ps.Play();
             this.ExplosionSound.Play();
-            GameObject DeadBody = other.gameObject.GetComponent<Player>().DeadBody;
-            if (DeadBody != null)
+            if (other.gameObject.GetComponent<Player>() != null)
+            {
+                this.GameManager.MissionLose();
+                this.DeadBody = other.gameObject.GetComponent<Player>().DeadBody;
+            } 
+            else if (other.GetComponent<Rigidbody>() != null)
+            {
+                this.DeadBody = other.gameObject;
+                while (this.DeadBody.tag != "body")
+                {
+                    this.DeadBody = this.DeadBody.transform.parent.gameObject;
+                }
+                Debug.Log(this.DeadBody.name);
+            }
+            if (this.DeadBody != null)
             {
                 Rigidbody[] rigidbodies;
                 rigidbodies = DeadBody.GetComponentsInChildren<Rigidbody>();
@@ -53,5 +68,7 @@ public class ExploTrap : MonoBehaviour
             }
             Destroy(this.gameObject.transform.parent.gameObject, 3f);
         }
+        
+        
     }
 }
