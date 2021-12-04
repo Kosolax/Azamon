@@ -1,20 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
     public GameObject Canvas;
-    public Slider VolumeSlider;
-    public Slider SensiSlider;
+
     public Rotation Rotation;
 
-    private void Start()
+    public Slider SensiSlider;
+
+    public Slider VolumeSlider;
+
+    public void CloseSettings()
     {
-        this.VolumeSlider.onValueChanged.AddListener(OnVolumeChange);
-        this.SensiSlider.onValueChanged.AddListener(OnSensiChange);
-        AudioListener.volume = 0.6f;
+        this.Canvas.SetActive(false);
+        UIManager.IsMenuOn = false;
+    }
+
+    public void OnSensiChange(float value)
+    {
+        this.Rotation.MouseSensitivity = value / 10;
     }
 
     public void OnVolumeChange(float value)
@@ -22,9 +27,11 @@ public class Settings : MonoBehaviour
         AudioListener.volume = value / 100;
     }
 
-    public void OnSensiChange(float value)
+    private void Start()
     {
-        this.Rotation.MouseSensitivity = value / 10;
+        this.VolumeSlider.onValueChanged.AddListener(OnVolumeChange);
+        this.SensiSlider.onValueChanged.AddListener(OnSensiChange);
+        AudioListener.volume = 0.6f;
     }
 
     private void Update()
@@ -41,11 +48,5 @@ public class Settings : MonoBehaviour
                 UIManager.IsMenuOn = true;
             }
         }
-    }
-
-    public void CloseSettings()
-    {
-        this.Canvas.SetActive(false);
-        UIManager.IsMenuOn = false;
     }
 }
