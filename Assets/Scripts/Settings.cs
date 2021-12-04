@@ -19,7 +19,6 @@ public class Settings : MonoBehaviour
 
     public void OnVolumeChange(float value)
     {
-        Debug.Log(value);
         AudioListener.volume = value / 100;
     }
 
