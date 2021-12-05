@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 using Cinemachine;
 
@@ -32,6 +33,10 @@ public class Player : MonoBehaviour
 
     public Inventory Inventory;
 
+    public AudioSource AudioSource;
+
+    public List<AudioClip> DeathSounds;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -59,6 +64,13 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawn(float waitTime)
     {
+        this.AudioSource.clip = this.DeathSounds[Random.Range(0, this.DeathSounds.Count)];
+
+        if (this.AudioSource.clip != null)
+        {
+            this.AudioSource.Play();
+        }
+
         Vector3 startVelocity = new Vector3(this.Movement.CharacterController.velocity.x, this.Movement.Velocity.y, this.Movement.CharacterController.velocity.z);
         this.Movement.CharacterController.enabled = false;
         this.isDead = true;

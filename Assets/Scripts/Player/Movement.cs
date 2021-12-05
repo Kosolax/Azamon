@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -40,6 +42,8 @@ public class Movement : MonoBehaviour
 
     public Inventory Inventory;
 
+    public List<AudioClip> JumpSounds;
+
     public float FallVelocity;
 
     public GameManager GameManager;
@@ -81,6 +85,8 @@ public class Movement : MonoBehaviour
 
     private void LocalJump()
     {
+        this.JumpAudioSource.clip = this.JumpSounds[Random.Range(0, this.JumpSounds.Count)];
+
         if (this.JumpAudioSource.clip != null)
         {
             this.JumpAudioSource.Play();

@@ -18,6 +18,10 @@ public class TrapLauncherSewer : MonoBehaviour
 
     public AudioSource AudioSource;
 
+    public AudioSource MetalSound;
+
+    private bool isLaunched;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -29,10 +33,19 @@ public class TrapLauncherSewer : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && isLaunched)
+        {
+            this.MetalSound.Play();
+        }
+    }
+
     void LaunchTrap()
     {
         if (this.GetComponent<Rigidbody>() != null)
         {
+            this.isLaunched = true;
             this.idleParticleSystem.gameObject.SetActive(false);
             this.launchParticleSystem.Play();
             this.AudioSource.Play();
