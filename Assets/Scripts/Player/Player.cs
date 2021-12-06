@@ -1,4 +1,5 @@
 using System.Collections;
+
 using System.Collections.Generic;
 
 using Cinemachine;
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
 
     public Inventory Inventory;
 
-    public AudioSource AudioSource;
+    public AudioSource DeathAudioSource;
 
     public List<AudioClip> DeathSounds;
 
@@ -64,12 +65,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawn(float waitTime)
     {
-        this.AudioSource.clip = this.DeathSounds[Random.Range(0, this.DeathSounds.Count)];
-
-        if (this.AudioSource.clip != null)
-        {
-            this.AudioSource.Play();
-        }
 
         Vector3 startVelocity = new Vector3(this.Movement.CharacterController.velocity.x, this.Movement.Velocity.y, this.Movement.CharacterController.velocity.z);
         this.Movement.CharacterController.enabled = false;
@@ -79,6 +74,12 @@ public class Player : MonoBehaviour
         this.ThirdPersonCamera.GetComponent<Camera>().enabled = true;
         this.DeadBody = Instantiate(RiggedPlayerPrefab, this.BodyPosition.transform.position, this.transform.rotation);
         this.DeadBody.transform.parent = this.DeadBodies.transform;
+        this.DeathAudioSource.clip = this.DeathSounds[Random.Range(0, this.DeathSounds.Count)];
+
+        if (this.DeathAudioSource.clip != null)
+        {
+            this.DeathAudioSource.Play();
+        }
 
         Rigidbody[] rigidbodies;
         rigidbodies = this.DeadBody.GetComponentsInChildren<Rigidbody>();
