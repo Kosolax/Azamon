@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PackageInteract : Interact
 {
     public Player Player;
     public GameObject Barrier;
+    public Sprite Sprite;
+    public Inventory Inventory;
 
     public override void MakeAction()
     {
@@ -31,6 +34,8 @@ public class PackageInteract : Interact
             if (playerGameObject != null)
             {
                 this.Player = playerGameObject.GetComponent<Player>();
+                this.Inventory = playerGameObject.GetComponent<Inventory>();
+                this.Inventory.Sprite = this.Sprite;
             }
         }
 

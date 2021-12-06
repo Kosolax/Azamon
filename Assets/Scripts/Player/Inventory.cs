@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
 
     public bool hasDoubleJump;
 
+    public Sprite Sprite;
+
     private bool hasPackage;
 
     private bool hasUsedDoubleJump;
@@ -39,6 +41,7 @@ public class Inventory : MonoBehaviour
         set
         {
             this.hasPackage = value;
+            this.PackageImage.sprite = this.Sprite;
             this.PackageImage.gameObject.SetActive(this.hasPackage);
         }
     }

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4697672017521611890}
   - component: {fileID: 4697672017521611891}
-  m_Layer: 0
+  - component: {fileID: 6765704003157421054}
+  m_Layer: 3
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +94,111 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!82 &6765704003157421054
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697672017521611889}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6c91d2592a0aa7541b144cf037581329, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.381
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 0.15
+  MaxDistance: 24.361774
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.7013812
+      outSlope: -3.7013812
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5645078
+    - serializedVersion: 3
+      time: 0.07211962
+      value: 0.5262061
+      inSlope: -2.7210672
+      outSlope: -2.7210672
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.71774614
+      outWeight: 0.13097343
+    - serializedVersion: 3
+      time: 0.8064575
+      value: 0
+      inSlope: -0.23130235
+      outSlope: -0.23130235
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.30337194
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.33333334
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4697672017946689659
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +212,7 @@ GameObject:
   - component: {fileID: 4697672017946689638}
   - component: {fileID: 4697672017946689637}
   - component: {fileID: 4697672017946689636}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Streetlamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4302,7 +4408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4697672018451309949}
   - component: {fileID: 4697672018451309950}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
