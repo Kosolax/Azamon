@@ -20,6 +20,7 @@ public class TrapDeath : MonoBehaviour
         if (other.tag == "Player")
         {
             this.GameManager.MissionLose();
+            this.gameObject.SetActive(false);
         }
     }
 }

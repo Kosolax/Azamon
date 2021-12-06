@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject GamePanel;
 
+    public GameObject Camera;
+
+    public TextMeshProUGUI EndText;
+
     [SerializeField]
     private float displayTimer;
 
@@ -57,6 +61,9 @@ public class GameManager : MonoBehaviour
             this.WinPanel.SetActive(true);
             this.GamePanel.SetActive(false);
             UIManager.IsMenuOn = true;
+            this.Player.gameObject.SetActive(false);
+            this.Camera.SetActive(true);
+            this.EndText.text = $"Bien joué {this.GetCounterDeathFormatted(this.CounterDeath.ToString())} vous avez gagné une journée de plus !";
         }
 
         this.CurrentMission++;
