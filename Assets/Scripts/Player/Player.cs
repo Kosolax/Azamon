@@ -125,23 +125,4 @@ public class Player : MonoBehaviour
         this.SpawnInElevator();
         this.Inventory.HasPackage = false;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "platform")
-        {
-            transform.parent = other.transform.parent.transform;
-
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "platform")
-        {
-            transform.parent = null;
-
-        }
-    }
-
 }
