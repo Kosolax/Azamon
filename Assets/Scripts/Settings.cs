@@ -31,7 +31,7 @@ public class Settings : MonoBehaviour
     {
         this.VolumeSlider.onValueChanged.AddListener(OnVolumeChange);
         this.SensiSlider.onValueChanged.AddListener(OnSensiChange);
-        AudioListener.volume = 0.6f;
+        AudioListener.volume = 0f;
     }
 
     private void Update()

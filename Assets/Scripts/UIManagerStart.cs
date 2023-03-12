@@ -21,6 +21,8 @@ public class UIManagerStart : MonoBehaviour
         {
             item.SetActive(false);
         }
+
+        AudioListener.volume = 0.2f;
     }
 
     public void Quit()
